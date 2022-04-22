@@ -1,0 +1,59 @@
+<main class="contenedor">
+    <form action="/vacantes/editar/{{vacante.url}}" method="POST" class="default-form">
+        <h3>Información General</h3>
+
+        <div class="campo">
+            <label>Titulo</label>
+            <input type="text" name="titulo" placeholder="Ej: Angular Developer" value="{{vacante.titulo}}" required>
+        </div>
+
+        <div class="campo">
+            <label>Empresa</label>
+            <input type="text" value="{{vacante.empresa}}" name="empresa" placeholder="Empresa Contrata" required>
+        </div>
+        <div class="campo">
+            <label>Ubicación</label>
+            <input type="text" value="{{vacante.ubicacion}}" name="ubicacion" placeholder="Ej: Argentina o Remoto" required>
+        </div>
+        <div class="campo">
+            <label>Contrato</label>
+            <select name="contrato">
+                {{#tipoContrato vacante.contrato}}
+                    <option value="" disabled selected> -- Selecciona --</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Por Proyecto">Por Proyecto</option>
+                {{/tipoContrato}}
+            </select>
+        </div>
+         <div class="campo">
+            <label>Salario</label>
+            <input type="text" value="{{vacante.salario}}" name="salario" placeholder="Ej: $xxx" required>
+        </div>
+        <div class="campo">
+            <label>Contacto</label>
+            <input type="email" value="{{vacante.contacto}}" name="contacto" placeholder="Contacto" required>
+        </div>
+        <h3>Descripción del Puesto</h3>
+
+        <div class="campo descripcion">
+            <label> Descripción </label>
+            <input type="hidden" value="{{{vacante.descripcion}}}" id="x" name="descripcion">
+            <trix-editor input="x"></trix-editor>
+        </div>
+
+        <h3>Conocimientos</h3>
+        <ul class="lista-conocimientos">
+            {{#seleccionarSkills vacante.skills }}
+            {{/seleccionarSkills}}
+        </ul>
+
+        <div clasS="campor centrar-horizontal">
+            <input type="hidden" name="skills" id="skills">
+            <input type="submit" value="Guardar Cambios" class="btn btn-azul">
+        </div>
+
+    </form>
+
+</main>
