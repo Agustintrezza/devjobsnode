@@ -210,5 +210,5 @@ exports.validarPerfil = (req, res, next) => {
             mensajes : req.flash()
         })
     }
-    next(); // todo bien, siguiente middleware!
+    next(); // todo bien, siguiente middleware.!
 }
