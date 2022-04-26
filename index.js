@@ -1,8 +1,9 @@
-require('./config/db');
-require('dotenv').config({ path: 'variables.env'})
-
-
 const mongoose = require('mongoose');
+require('./config/db');
+
+
+
+
 const express = require('express');
 const exphbs = require('express-handlebars');
 const router = require('./routes');
@@ -15,11 +16,11 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const passport = require('./config/passport');
 const cors = require('cors');
-const Handlebars = require('handlebars');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+// const Handlebars = require('handlebars');
+// const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 // const expressValidator = require('express-validator');
 
-
+require('dotenv').config({ path: 'variables.env'});
 
 const app = express(); 
 
@@ -36,21 +37,21 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // validacion de campos
 // app.use(expressValidator());
 
-// app.engine('handlebars',
-//     exphbs.engine({
-//         defaultLayout: 'layout',
-//         helpers: require('./helpers/handlebars')
-//     })
-// );
-
-//habilitar handlebars como view
 app.engine('handlebars',
     exphbs.engine({
-        handlebars: allowInsecurePrototypeAccess(Handlebars),
         defaultLayout: 'layout',
         helpers: require('./helpers/handlebars')
     })
 );
+
+//habilitar handlebars como view
+// app.engine('handlebars',
+//     exphbs.engine({
+//         handlebars: allowInsecurePrototypeAccess(Handlebars),
+//         defaultLayout: 'layout',
+//         helpers: require('./helpers/handlebars')
+//     })
+// );
 
 app.set('view engine', 'handlebars');
 
@@ -89,10 +90,23 @@ app.use('/', router());
 app.use(express.static('public/img'));
 
 
-const host = '0.0.0.0';
-const port = process.env.PUERTO;
+// const host = '0.0.0.0';
+// const port = process.env.PORT;
 
-app.listen(port, host, () => {
-    console.log(`El servidor esta funcionando en el puerto ${process.env.PUERTO}`);
-});
+// app.listen(port, host, () => {
+//     console.log('El servidor esta funcionando');
+// });
 // app.listen(process.env.PUERTO); 
+
+app.get('/', (req, res) => {
+    res
+      .status(200)
+      .send('Hello server is running')
+      .end();
+  });
+   
+  // Start the server
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`);
+  });
