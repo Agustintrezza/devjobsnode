@@ -93,6 +93,6 @@ const host = '0.0.0.0';
 const port = process.env.PUERTO;
 
 app.listen(port, host, () => {
-    console.log('El servidor esta funcionando');
+    console.log(`El servidor esta funcionando en el puerto ${process.env.PUERTO}`);
 });
 // app.listen(process.env.PUERTO); 
