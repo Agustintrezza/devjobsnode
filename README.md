@@ -8,4 +8,4 @@ Aplicación Model, View, Controller.
 
 Espero les guste!!
 
-URL para ver la aplicación: https://devjobsagus.herokuapp.com/
+URL para ver la aplicación: https://devjobsagus.herokuapp.com
